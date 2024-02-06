@@ -62,3 +62,24 @@ html, body{
 .wrapper-card-img :hover{
     transform: scale(1.1);
 }
+
+.semi-footer{
+    background: #2b2b2b;
+    color: #fff;
+}
+
+.semi-footer a{
+    color: #fff;
+}
+
+.semi-footer h4{
+    border-bottom: 1px solid;
+    padding: 10px 0;
+}
+.footer{
+    background: #000000;
+    color: #fff;
+    font-size: 0.7rem;
+    height: 90px;
+    line-height: 90px;
+}
