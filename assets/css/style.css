@@ -83,3 +83,8 @@ html, body{
     height: 90px;
     line-height: 90px;
 }
+
+#navbar {
+    padding: 25px;
+    transition: 0.5s;
+}
