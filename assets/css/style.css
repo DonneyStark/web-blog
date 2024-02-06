@@ -45,3 +45,20 @@ html, body{
     background: rgb(249, 64, 64);
     
 }
+
+.wrapper-card-img{
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+}
+
+.wrapper-card-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 1s;
+}
+
+.wrapper-card-img :hover{
+    transform: scale(1.1);
+}
