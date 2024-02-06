@@ -27,3 +27,21 @@ html, body{
     background: rgb(0 0 0 / 50%);
     height: 100%;
 }
+.border-short-bottom{
+    position: relative;
+    padding: 20px 0;
+    margin-bottom: 25px;
+}
+
+
+.border-short-bottom::after{
+    position: absolute;
+    content: "";
+    width: 100px;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -50px;
+    background: rgb(249, 64, 64);
+    
+}
