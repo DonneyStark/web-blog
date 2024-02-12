@@ -86,5 +86,123 @@ html, body{
 
 #navbar {
     padding: 25px;
-    transition: 0.5s;
+    transition: 1s;
+}
+
+.page-title{
+    position: relative;
+    display: block;
+    padding-top: 250px;
+    padding-bottom: 100px;
+    color: #fff;
+}
+
+.timeline{
+    list-style: none;
+    position: relative;
+    padding: 20px 0;
+
+}
+
+.timeline::before{
+    position: absolute;
+    content: '';
+    width: 2px;
+    background: #000000;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+li > .timeline-badge{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 3px solid green;
+    left: 50%;
+    border-radius: 50%;
+    margin-left: -9px;
+    background: #fff;
+    top: 15px;
+    box-shadow: 0 0 0 5px #fff;
+}
+
+li > .timeline-badge::before{
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    top: 5px;
+    right: 20px;
+    background: #000000;
+}
+
+li.inverted > .timeline-badge::before{
+    
+    right: -32px;
+    
+}
+
+li > .timeline-badge p{
+    width: 200px;
+    margin-top: -7px;
+    margin-left: 25px;
+    font-size: 17px;
+    font-weight: bold;
+
+}
+
+li.inverted > .timeline-badge p{
+    float: right;
+    text-align: right;
+    margin-right: 25px;
+}
+
+li > .timeline-card{
+    position: relative;
+    width: 46%;
+    float: left;
+    text-align: right;
+    padding: 0 10px;
+    /* margin-top: -25px; */
+    margin-left: -17px;
+}
+
+li.inverted > .timeline-card{
+    float: right;
+    text-align: left;
+    margin-right: -17px;
+}
+
+.timeline li{
+    position: relative;
+    margin-bottom: 40px;
+}
+.timeline > li::after{
+    
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.timeline-arrow{
+    color: rgb(0, 0, 0);
+    width: 100%;
+    bottom: -70px;
+    text-align: center;
+}
+
+.star{
+    position: relative;
+    font-size: 2em;
+    color: gold;
+    display: inline-block;
+}
+.star-current{
+    position: absolute;
+    top: 0;
+    
+    white-space: nowrap;
+    overflow: hidden;
 }
