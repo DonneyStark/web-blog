@@ -63,6 +63,11 @@ html, body{
     transform: scale(1.1);
 }
 
+.btn-group-custom button{
+    width: 100px;
+    margin-bottom: 0.5rem;
+}
+
 .semi-footer{
     background: #2b2b2b;
     color: #fff;
