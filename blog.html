@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blog</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
@@ -62,8 +62,13 @@
     <div class="container py-5">
         <div class="row pb-4">
             <div class="col-12 btn-group-custom text-center">
-                <button class="btn btn-primary">ทั้งหมด</button>
-                <button class="btn btn-primary">HTML</button>
+                <a href="blog.html?tag=all">
+                    <button class="btn btn-primary">ทั้งหมด</button>
+                </a>
+                <a href="blog.html?tag=html">
+                    <button class="btn btn-primary">HTML</button>
+                </a>
+                
                 <button class="btn btn-primary">CSS</button>
                 <button class="btn btn-primary">JavaScript</button>
                 <button class="btn btn-primary">PHP</button>
@@ -73,17 +78,17 @@
         <div class="row">
             <div class="col-12 col-md-4 col-sm-6 p-2 ">
                 <div class="card h-100" >
-                    <a href="" class="wrapper-card-img">
-                        <img  src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
+                    <a href="blog-detail.html?id=001" class="wrapper-card-img">
+                        <img  src="https://tipsrain.com/wp-content/uploads/2023/02/6316f4d348cda_-HTML.png.b0ec735790863d7847b677a1be10acd3.png" class="card-img-top" alt="...">
                     </a>
                    
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">HTML คืออะไร</h5>
+                      <p class="card-text">ภาษาหลักที่ใช้ในการแสดงผลเว็บเพจ โดยใช้ Tag ในการแสดงผล</p>
                       
                     </div>
                     <div class="p-3">
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="blog-detail.html?id=001" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>

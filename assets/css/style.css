@@ -68,6 +68,30 @@ html, body{
     margin-bottom: 0.5rem;
 }
 
+.blog-image{
+    padding: 200px 0px 120px;
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+}
+
+.blog-content{
+    padding: 50px 100px;
+    box-shadow: 0px 0px 10px rgb(87, 87, 87);
+}
+
+@media (max-width:991px){
+    .blog-content{
+        padding: 40px 50px;  
+    }
+}
+
+@media (max-width:768px){
+    .blog-content{
+        padding: 20px 40px;  
+    }
+}
+
 .semi-footer{
     background: #2b2b2b;
     color: #fff;
