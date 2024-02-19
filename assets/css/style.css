@@ -239,3 +239,27 @@ li.inverted > .timeline-card{
     white-space: nowrap;
     overflow: hidden;
 }
+
+.owl-carousel .card-body{
+    height: 150px;
+    overflow: hidden;
+}
+
+.to-top{
+    position: fixed;
+    bottom: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(94, 183, 255, 0.752);
+    color: #fff;
+    z-index: 999;
+    border-radius: 50%;
+    font-size: 25px;
+    right: 2%;
+    text-align: center;
+    cursor: pointer;
+}
+.to-top:hover{
+    color: white;
+    background: rgba(38, 157, 255, 0.752);
+}
