@@ -30,3 +30,17 @@ $(document).ready(function () {
 $('.to-top').click(function(){
     $('html,body').animate({scrollTop: '0px'}, 800)
 })
+
+document.querySelector('.facebook-share').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+});
+document.querySelector('.line-share').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.open('https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(window.location.href), '_blank');
+});
+  
+document.querySelector('.twitter-share').addEventListener('click', function(e) {
+    e.preventDefault();
+    window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href), '_blank');
+});
