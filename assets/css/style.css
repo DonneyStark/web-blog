@@ -59,7 +59,7 @@ html, body{
     transition: 1s;
 }
 
-.wrapper-card-img :hover{
+.wrapper-card-img:hover{
     transform: scale(1.1);
 }
 
