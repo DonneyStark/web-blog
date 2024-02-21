@@ -1,3 +1,16 @@
+<?php
+require_once 'php/connect.php';
+$sql = "SELECT * FROM articles WHERE id = '".$_GET['id']."'";
+$result = $conn->query($sql);
+
+if($result->num_rows > 0){
+    $row = $result->fetch_assoc();
+}else{
+    header('location: blog.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +22,7 @@
 
     <!-- meta -->
     <!-- Primary Meta Tags -->
-    <title>HTML คืออะไร</title>
+    <title><?php echo $row['subject']; ?></title>
     <meta name="title" content="หน้าเงิน facemonews" />
     
 
@@ -17,19 +30,19 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://metatags.io/" />
     <meta property="og:title" content="หน้าเงิน facemonews" />
-    <meta property="og:description" content="ข่าวสาร บทความ การเงิน การลงทุน หุ้นไทย หุ้นต่างประเทศ" />
+    <meta property="og:description" content="<?php echo $row['sub_title']; ?>" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1554672723-b208dc85134f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://metatags.io/" />
     <meta property="twitter:title" content="หน้าเงิน facemonews" />
-    <meta property="twitter:description" content="ข่าวสาร บทความ การเงิน การลงทุน หุ้นไทย หุ้นต่างประเทศ" />
+    <meta property="twitter:description" content="<?php echo $row['sub_title']; ?>" />
     <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
 
     <!-- Meta Tags Generated with https://metatags.io -->
     <!-- <meta name="title" content="หน้าเงิน facemonews"> -->
-    <meta name="description" content="ข่าวสาร บทความ การเงิน การลงทุน หุ้นไทย หุ้นต่างประเทศ">
+    <meta name="description" content="<?php echo $row['sub_title']; ?>">
     <meta name="keywords" content="หุ้น,หุ้นต่างประเทศ, บทความ,การลงทุน">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -61,11 +74,11 @@
     <!-- header -->
 
     <header data-jarallax data-speed="0.2" class=" jarallax"
-        style="background-image: url('https://tipsrain.com/wp-content/uploads/2023/02/6316f4d348cda_-HTML.png.b0ec735790863d7847b677a1be10acd3.png');">
+        style="background-image: url('<?php echo $row['image']; ?>');">
 
         <div class="blog-image">
-            <h1 class="display-4 fw-bold">HTML คืออะไร</h1>
-            <p class="lead">ภาษาหลักที่ใช้ในการแสดงผลเว็บเพจ โดยใช้ Tag ในการแสดงผล</p>
+            <h1 class="display-4 fw-bold"><?php echo $row['subject']; ?></h1>
+            <p class="lead"><?php echo $row['sub_title']; ?></p>
         </div>
 
     </header>
@@ -74,103 +87,7 @@
     <div class="container blog-content">
         <div class="row">
             <div class="col-12">
-                <p>PHP คืออะไร ? PHP ย่อมาจากคำว่า PHP Hypertext Preprocessor แต่สมัยก่อนย่อมาจากคำว่า Personal Home
-                    Page Tools เป็นโปรแกรมภาษาคอมพิวเตอร์ระดับสูง ประเภท Scripting Language
-                    ซึ่งภาษาประเภทนี้เก็บคำสั่งต่าง ๆ ในไฟล์ที่เรียกว่า Script และเวลาใช้งานต้องอาศัยตัวแปรชุดคำสั่ง
-                    โดยมีรากฐานโครงสร้างคำสั่งมาจากภาษาซี (C Programming Language) ภาษาจาวาสคริปต์ (JavaScript) และ
-                    ภาษาเพิร์ล (Practical Extraction and Report Language)</p>
-
-                <p>PHP สามารถใช้งานได้ผ่านอินเทอร์เน็ต มีความสามารถสูง และมีผู้นิยมใช้เป็นจำนวนมาก
-                    อีกทั้งยังสามารถดาวน์โหลดมาใช้งานได้ฟรี จากเว็บไซต์&nbsp;<a href="http://php.net/"
-                        rel="noreferrer noopener" target="_blank">http://php.net/</a></p>
-
-                <p>ลักษณะของ PHP แตกต่างจากภาษาสคริปต์แบบอื่น ๆ เพราะ PHP
-                    ได้รับการพัฒนาและออกแบบมาเพื่อใช้งานในการสร้างเอกสารแบบ HTML
-                    สามารถสอดแทรกหรือแก้ไขเนื้อหาได้อัตโนมัติ ดังนั้น PHP จึงเป็นภาษาที่เรียกว่า Server-Side หรือ
-                    HTML-Embedded Scripting Language
-                    สามารถประมวลผลตามคำสั่งและแสดงผลลัพธ์เป็นเว็บเพจตามที่ต้องการ&nbsp;ถือได้ว่า PHP
-                    เป็นเครื่องมือที่สำคัญชนิดหนึ่งที่ช่วยให้เราสามารถสร้าง Dynamic Web Pages
-                    (เว็บเพจที่มีการโต้ตอบกับผู้ใช้) ได้อย่างมีประสิทธิภาพและมีลูกเล่นมากขึ้น</p>
-
-                <p>PHP เกิดขึ้นมาจากกลุ่มนักพัฒนาที่มีการเปิดเผยโค้ดต้นฉบับ ดังนั้น PHP
-                    จึงมีการพัฒนาไปอย่างรวดเร็วและแพร่หลายโดยเฉพาะอย่างยิ่ง เมื่อใช้ร่วมกับ Apache Web Server,
-                    ระบบปฏิบัติ เช่น Linux หรือ FreeBSD เป็นต้น ในปัจจุบัน PHP สามารถใช้ร่วมกับ Web Server หลาย ๆ
-                    ตัวบนระบบปฏิบัติการต่าง ๆ เช่น Windows 95/98/NT เป็นต้น</p>
-
-                <p>PHP เป็นภาษาสคริปต์ (Scripting Language) คำสั่งต่าง ๆ จะเก็บในรูปแบบของข้อความ (Text)
-                    อาจเขียนแทรกอยู่ภายในภาษา HTML หรือถูกเขียนอย่างอิสระ แต่ในการใช้งานจริงมักใช้งานร่วมกับภาษา HTML
-                    ดังนั้นการเขียนโปรแกรมด้วยภาษา PHP ต้องมีความรู้ด้านภาษา HTML
-                    เป็นอย่างดีจึงสามารถเขียนโปรแกรมได้สมบูรณ์แบบ
-                    อย่างไรก็ตามเราสามารถใช้โปรแกรมประยุกต์มาช่วยอำนวยความสะดวกในการสร้างงานได้เช่นกัน เช่น Macromedia,
-                    Dreamweaver หรือโปรแกรมประเภท Editor ต่าง ๆ เช่น EditPlus เป็นต้น
-                    ซึ่งโปรแกรมเหล่านี้จะช่วยจำแนกคำต่าง ๆ ด้วยสีที่แตกต่างกันออกไป เช่น คำสั่ง คำทั่วไป ตัวแปร ฯลฯ
-                    เพื่อความสะดวกในการสังเกตและยังมีตัวเลขบอกบรรทัดทำให้สะดวกในการแก้ไขมากขึ้นอีกด้วย</p>
-
-                <p>PHP จึงเหมาะสำหรับการจัดทำเว็บไซต์และสามารถประมวลผลออกมาในรูปแบบ HTML โดยเป้าหมายหลักของภาษา PHP
-                    คือให้นักพัฒนาเว็บไซต์สามารถเขียนเว็บเพจ ที่มีความตอบโต้ได้อย่างรวดเร็ว</p>
-
-                <p>&nbsp;</p>
-
-                <h2>รู้จัก PHP คืออะไร เรียบร้อยแล้ว มารู้จัก 10 ลักษณะเด่นของ PHP</h2>
-
-                <p>เมื่อรู้จักภาษา PHP แล้ว มาทราบถึงลักษณะเด่นของ PHP ทั้ง 10 ข้อ ดังนี้</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 1. PHP เปิดให้ใช้บริการฟรี โดยสามารถใช้งานได้ที่&nbsp;<a
-                        href="http://php.net/" rel="noreferrer noopener" target="_blank">http://php.net/</a></p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 2. PHP เป็นโปรแกรม Server-Side Script มีความเร็วสูง
-                    รวมถึงมีประสิทธิภาพการใช้งานที่ดี ดังนั้นจึงมีขีดความสามารถไม่จำกัด</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 3. PHP สามารถใช้งานบนระบบปฏิบัติการ (Operating Systems) ที่หลากหลาย เช่น
-                    UNIX, Linux, Windows</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 4. สามารถเรียนรู้ภาษา PHP ได้ง่าย เนื่องจาก PHP มักถูกฝังเข้าไปใน HTML
-                    จึงมีโครงสร้างและไวยากรณ์ภาษาที่ไม่ยาก</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 5. ภาษา PHP มีความเร็วและมีประสิทธิภาพที่ดี โดยเฉพาะเมื่อใช้กับ Apach Xerve
-                    เพราะไม่ต้องใช้โปรแกรมจากภายนอก</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 6. ใช้ร่วมกับ XML (Extensible Markup Language) หรือภาษาที่ถูกใช้ในการสร้าง
-                    Format ได้ทันที</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 7. ภาษา PHP สามารถใช้งานร่วมกับระบบแฟ้มข้อมูลได้</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 8. สามารถใช้งาน PHP กับข้อมูลตัวอักษรได้อย่างมีประสิทธิภาพ</p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 9. ใช้ PHP กับโครงสร้างข้อมูล แบบ Scalar, Array หรือ Associative Array ได้
-                </p>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp; 10. ใช้ PHP กับการประมวลผลภาพได้</p>
-
-                <p>&nbsp;</p>
-
-                <p>เมื่อทราบถึงลักษณะเด่นทั้ง 10 ข้อของ PHP แล้ว มาทราบขั้นตอนการติดตั้ง PHP เวอร์ชันต่าง ๆ บน&nbsp;<a
-                        href="https://blog.openlandscape.cloud/ubuntu" rel="noreferrer noopener"
-                        target="_blank">Ubuntu</a>&nbsp;เพื่อเริ่มใช้งานจริงในหัวข้อลำดับถัดไป</p>
-
-                <hr />
-                <h2>วิธีการติดตั้ง PHP เวอร์ชันต่าง ๆ (5.6, 7.0 และ 7.x) บน Ubuntu</h2>
-
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ปัจจุบันมี PHP 3 รุ่นที่รองรับบน Ubuntu คือ PHP 5.6, 7.0 และ 7.x บน
-                    Ubuntu ส่วน PHP 5.3, 5.4 และ 5.5 ได้สิ้นสุดการรองรับแล้ว จึงไม่มีการอัปเดตความปลอดภัยอีกต่อไป
-                    ดังนั้นเพื่อให้ Service ของคุณมีความปลอดภัย จึงควรติดตั้งเวอร์ชันที่ได้รับการรองรับ
-                    โดยวิธีการติดตั้ง PHP ที่ได้รับการสนับสนุนใน Ubuntu และนิยมมากที่สุด ได้แก่ Apache และ Nginx
-                    เว็บเซิร์ฟเวอร์ ที่ใช้ OndrejSury PPA ดังนั้นวิธีการตั้งค่าเวอร์ชันเริ่มต้นของ PHP ที่ใช้ในระบบ
-                    Ubuntu มีดังนี้</p>
-
-                <p>PHP 7.x เป็นเวอร์ชันที่เสถียร และรองรับในที่เก็บซอฟต์แวร์ Ubuntu คุณสามารถยืนยันได้โดยเรียกใช้คำสั่ง
-                    apt ด้านล่างตามคำสั่งต่อไปนี้</p>
-
-                <p># apt show php OR&nbsp; # apt show php -a</p>
-
-                <p>ระบบจะแสดงข้อมูลเวอร์ชัน PHP</p>
-
-                <p>&nbsp;</p>
-
-
-
-                <p>&nbsp;</p>
-
+                <?php echo $row['detail']; ?>
 
 
 
@@ -182,7 +99,7 @@
                     <a href="#" class="line-share">Share on Line</a>
                     <a href="#" class="twitter-share">Share on Twitter</a>
                 </div>
-                <p class="text-end text-muted">14 กุมภาพันธ์</p>
+                <p class="text-end text-muted"><?php echo date_format(new DateTime($row['updated_at']),"j F Y"); ?></p>
             </div>
             <div class="col-12">
                 <div class="owl-carousel owl-theme">
@@ -277,9 +194,12 @@
                     
                 </div>
             </div>
+            <!-- comment Facebook -->
+            <!-- data-href="https://developers.facebook.com/docs/plugins/comments#configurator2"  -->
             <div class="col-12">
                 <div class="fb-comments" 
-                data-href="https://developers.facebook.com/docs/plugins/comments#configurator2" 
+                
+                data-href="https://developers.facebook.com/docs/plugins/comments#facemonews<?php echo $row['id']; ?>"
                 data-width="100%" 
                 data-numposts="5"></div>
                 <div id="fb-root"></div>
