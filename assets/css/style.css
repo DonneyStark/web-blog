@@ -268,9 +268,9 @@ li.inverted > .timeline-card{
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
-  }
+}
   
-  .social-share a {
+.social-share a {
     display: inline-block;
     padding: 10px 20px;
     background-color: #3b5998;
@@ -278,8 +278,8 @@ li.inverted > .timeline-card{
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
-  }
+}
   
-  .social-share a:hover {
+.social-share a:hover {
     background-color: #2d4373;
-  }
+}
