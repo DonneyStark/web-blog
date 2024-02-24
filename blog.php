@@ -1,7 +1,22 @@
 <?php
 require_once 'php/connect.php';
-$sql = "SELECT * FROM articles";
+
+
+
+// if(isset($_GET['tag'])){
+//     $tag = $_GET['tag'];
+// }else{
+//     $tag = 'all';
+// }
+
+$tag = isset($_GET['tag']) ? $_GET['tag'] : 'all';
+
+$sql = "SELECT * FROM `articles` WHERE `tag` LIKE '%".$tag."%' AND `status` = 'true'";
 $result = $conn->query($sql);
+
+if(!$result){
+    header('Location: https://www.facebook.com/');
+}
 
 ?>
 
@@ -84,24 +99,39 @@ $result = $conn->query($sql);
         <div class="row pb-4">
             <div class="col-12 btn-group-custom text-center">
                 <a href="blog.php?tag=all">
-                    <button class="btn btn-primary">ทั้งหมด</button>
+                    <button class="btn btn-primary <?php echo $tag == 'all' ? 'active' : ''; ?>">ทั้งหมด</button>
                 </a>
                 <a href="blog.php?tag=html">
-                    <button class="btn btn-primary">HTML</button>
+                    <button class="btn btn-primary <?php echo $tag == 'html' ? 'active' : ''; ?>">HTML</button>
+                </a>
+                <a href="blog.php?tag=css">
+                    <button class="btn btn-primary <?php echo $tag == 'css' ? 'active' : ''; ?>">CSS</button>
+                </a>
+                <a href="blog.php?tag=javascript">
+                    <button class="btn btn-primary <?php echo $tag == 'javascript' ? 'active' : ''; ?>">JavaScript</button>
+                </a>
+                <a href="blog.php?tag=php">
+                    <button class="btn btn-primary <?php echo $tag == 'php' ? 'active' : ''; ?>">PHP</button>
+                </a>
+                <a href="blog.php?tag=mysql">
+                    <button class="btn btn-primary <?php echo $tag == 'mysql' ? 'active' : ''; ?>">MySQL</button>
                 </a>
                 
-                <button class="btn btn-primary">CSS</button>
-                <button class="btn btn-primary">JavaScript</button>
-                <button class="btn btn-primary">PHP</button>
-                <button class="btn btn-primary">MySQL</button>
+                
             </div>
         </div>
         <div class="row">
-            <?php while($row = $result->fetch_assoc()){ ?>
+            <?php 
+            if($result->num_rows){
+                
+            
+            while($row = $result->fetch_assoc()){ 
+            
+            ?>
             <div class="col-12 col-md-4 col-sm-6 p-2 ">
                 <div class="card h-100" >
                     <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="wrapper-card-img">
-                        <img  src="<?php echo $row['image'] ?>" class="card-img-top" alt="...">
+                        <img  src="<?php echo $base_path_blog.$row['image'] ?>" class="card-img-top" alt="...">
                     </a>
                    
                     <div class="card-body">
@@ -114,7 +144,17 @@ $result = $conn->query($sql);
                     </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php } 
+            } else{ 
+            ?>
+                <section class="col-12">
+                <p class="text-center">ไม่มีข้อมูล</p>
+                </section>
+            
+            <?php 
+            }
+            ?>
+            
             
             
         </div>

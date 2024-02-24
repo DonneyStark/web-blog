@@ -1,6 +1,6 @@
 <?php
 require_once 'php/connect.php';
-$sql = "SELECT * FROM articles WHERE id = '".$_GET['id']."'";
+$sql = "SELECT * FROM articles WHERE id = '".$_GET['id']."' AND `status` = 'true'";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0){
@@ -74,7 +74,7 @@ if($result->num_rows > 0){
     <!-- header -->
 
     <header data-jarallax data-speed="0.2" class=" jarallax"
-        style="background-image: url('<?php echo $row['image']; ?>');">
+        style="background-image: url('<?php echo $base_path_blog.$row['image']; ?>');">
 
         <div class="blog-image">
             <h1 class="display-4 fw-bold"><?php echo $row['subject']; ?></h1>

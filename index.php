@@ -1,17 +1,34 @@
+<?php
+require_once 'php/connect.php';
+
+// if(isset($_GET['tag'])){
+//     $tag = $_GET['tag'];
+// }else{
+//     $tag = 'all';
+// }
+
+
+
+$sql = "SELECT * FROM `articles` WHERE `status` = 'true' LIMIT 6";
+$result = $conn->query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-   
+    <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
 
     <!-- meta -->
     <!-- Primary Meta Tags -->
     <title>หน้าเงิน facemonews</title>
     <meta name="title" content="หน้าเงิน facemonews" />
-    
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -59,17 +76,13 @@
     <!-- carousel -->
     <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="carousel-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1707147671059-94dd36708ca7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                <div class="carousel-img" style="background-image: url('https://images.unsplash.com/photo-1707147671059-94dd36708ca7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
                     <div class="carousel-caption">
                         <h1 class="display-4 fw-bold">Dookdik Studio</h1>
                         <p class="lead">สังคมคนทำเพลง</p>
@@ -79,8 +92,7 @@
 
             </div>
             <div class="carousel-item">
-                <div class="carousel-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1706969049924-25a377c2ea9d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                <div class="carousel-img" style="background-image: url('https://images.unsplash.com/photo-1706969049924-25a377c2ea9d?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
                     <div class="carousel-caption">
                         <h1 class="display-4 fw-bold">Dookdik Studio</h1>
                         <p class="lead">สังคมคนทำเพลง</p>
@@ -90,8 +102,7 @@
 
             </div>
             <div class="carousel-item">
-                <div class="carousel-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1682686580391-615b1f28e5ee?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                <div class="carousel-img" style="background-image: url('https://images.unsplash.com/photo-1682686580391-615b1f28e5ee?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
                     <div class="carousel-caption">
                         <h1 class="display-4 fw-bold">Dookdik Studio</h1>
                         <p class="lead">สังคมคนทำเพลง</p>
@@ -101,13 +112,11 @@
 
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -127,114 +136,39 @@
         <div class=" text-center">
             <h1 class="border-short-bottom">บทความ</h1>
             <div class="row">
+
+            <?php 
+            
+                
+            
+            while($row = $result->fetch_assoc()){ 
+            
+            ?>   
+
                 <div class="col-12 col-md-4 col-sm-6 p-2 ">
                     <div class="card h-100">
-                        <a href="" class="wrapper-card-img">
-                            <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                class="card-img-top" alt="...">
+                        <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="wrapper-card-img">
+                            <img src="<?php echo $base_path_blog.$row['image'] ?>" class="card-img-top" alt="...">
                         </a>
 
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title"><?php echo $row['subject'] ?></h5>
+                            <p class="card-text"><?php echo $row['sub_title'] ?></p>
 
                         </div>
                         <div class="p-3">
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="blog-detail.php?id=<?php echo $row['id'] ?>" class="btn btn-primary">อ่านเพิ่มเติม</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 col-sm-6 p-2">
-                    <div class="card h-100">
-                        <a href="" class="wrapper-card-img">
-                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                class="card-img-top" alt="...">
-
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-sm-6 p-2">
-                    <div class="card h-100">
-                        <a href="" class="wrapper-card-img">
-                            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                class="card-img-top" alt="...">
-
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-sm-6 p-2">
-                    <div class="card h-100">
-                        <a href="" class="wrapper-card-img">
-                            <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                class="card-img-top" alt="...">
-
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-sm-6 p-2">
-                    <div class="card h-100">
-                        <a href="" class="wrapper-card-img">
-                            <img src="https://images.unsplash.com/photo-1566837945700-30057527ade0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                class="card-img-top" alt="...">
-
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-sm-6 p-2">
-                    <div class="card h-100">
-                        <a href="" class="wrapper-card-img">
-                            <img src="https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                class="card-img-top" alt="...">
-
-                        </a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and example text to
-                                build on the card make up the bulk of the card's content.</p>
-
-                        </div>
-                        <div class="p-3">
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
+            
+            <?php 
+            
+                
+            
+            } 
+            
+            ?>  
 
             </div>
         </div>
