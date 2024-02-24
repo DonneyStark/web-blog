@@ -1,13 +1,19 @@
 <?php
 require_once 'php/connect.php';
-$sql = "SELECT * FROM articles WHERE id = '".$_GET['id']."' AND `status` = 'true'";
+$sql = "SELECT * FROM articles WHERE id = '" . $_GET['id'] . "' AND `status` = 'true'";
 $result = $conn->query($sql);
 
-if($result->num_rows > 0){
+if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-}else{
+} else {
     header('location: blog.php');
 }
+
+$sql_RAND = "SELECT * FROM `articles` WHERE `status` = 'true' ORDER BY RAND() LIMIT 6";
+$result_RAND = $conn->query($sql_RAND);
+
+
+
 
 ?>
 
@@ -17,14 +23,14 @@ if($result->num_rows > 0){
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-   
+    <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
 
     <!-- meta -->
     <!-- Primary Meta Tags -->
     <title><?php echo $row['subject']; ?></title>
     <meta name="title" content="หน้าเงิน facemonews" />
-    
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -63,7 +69,7 @@ if($result->num_rows > 0){
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
 </head>
 
@@ -73,8 +79,7 @@ if($result->num_rows > 0){
 
     <!-- header -->
 
-    <header data-jarallax data-speed="0.2" class=" jarallax"
-        style="background-image: url('<?php echo $base_path_blog.$row['image']; ?>');">
+    <header data-jarallax data-speed="0.2" class=" jarallax" style="background-image: url('<?php echo $base_path_blog . $row['image']; ?>');">
 
         <div class="blog-image">
             <h1 class="display-4 fw-bold"><?php echo $row['subject']; ?></h1>
@@ -86,12 +91,14 @@ if($result->num_rows > 0){
     <!-- blog -->
     <div class="container blog-content">
         <div class="row">
+            <!-- detail -->
             <div class="col-12">
                 <?php echo $row['detail']; ?>
 
 
 
             </div>
+            <!-- share button and date -->
             <div class="col-12">
                 <hr>
                 <div class="social-share">
@@ -99,118 +106,43 @@ if($result->num_rows > 0){
                     <a href="#" class="line-share">Share on Line</a>
                     <a href="#" class="twitter-share">Share on Twitter</a>
                 </div>
-                <p class="text-end text-muted"><?php echo date_format(new DateTime($row['updated_at']),"j F Y"); ?></p>
+                <p class="text-end text-muted"><?php echo date_format(new DateTime($row['updated_at']), "j F Y"); ?></p>
             </div>
+            <!-- carousel -->
             <div class="col-12">
                 <div class="owl-carousel owl-theme">
+                    <?php while($row_RAND = $result_RAND->fetch_assoc()){ ?>
                     <div class="col-12 p-2 ">
                         <div class="card h-100">
-                            <a href="" class="wrapper-card-img">
-                                <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    class="card-img-top" alt="...">
+                            <a href="blog-detail.php?id=<?php echo $row_RAND['id'] ?>" class="wrapper-card-img">
+                                <img src="<?php echo $base_path_blog.$row_RAND['image'] ?>" class="card-img-top" alt="...">
                             </a>
 
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content example text to build on the card title title and make up the bulk of the card's content.</p>
+                                <h5 class="card-title"><?php echo $row_RAND['subject']; ?></h5>
+                                <p class="card-text"><?php echo $row_RAND['sub_title']; ?></p>
 
                             </div>
                             <div class="p-3">
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="blog-detail.php?id=<?php echo $row_RAND['id'] ?>" class="btn btn-primary">อ่านเพิ่มเติม</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 p-2 ">
-                        <div class="card h-100">
-                            <a href="" class="wrapper-card-img">
-                                <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    class="card-img-top" alt="...">
-                            </a>
+                    <?php } ?>
 
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card.</p>
-
-                            </div>
-                            <div class="p-3">
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 p-2 ">
-                        <div class="card h-100">
-                            <a href="" class="wrapper-card-img">
-                                <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    class="card-img-top" alt="...">
-                            </a>
-
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">the bulk of the card's content.</p>
-
-                            </div>
-                            <div class="p-3">
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 p-2 ">
-                        <div class="card h-100">
-                            <a href="" class="wrapper-card-img">
-                                <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    class="card-img-top" alt="...">
-                            </a>
-
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content title and make up the bulk of the card's content.</p>
-
-                            </div>
-                            <div class="p-3">
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 p-2 ">
-                        <div class="card h-100">
-                            <a href="" class="wrapper-card-img">
-                                <img src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2825&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                    class="card-img-top" alt="...">
-                            </a>
-
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content title and make up the bulk of the card's content.</p>
-
-                            </div>
-                            <div class="p-3">
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
             <!-- comment Facebook -->
             <!-- data-href="https://developers.facebook.com/docs/plugins/comments#configurator2"  -->
             <div class="col-12">
-                <div class="fb-comments" 
-                
-                data-href="https://developers.facebook.com/docs/plugins/comments#facemonews<?php echo $row['id']; ?>"
-                data-width="100%" 
-                data-numposts="5"></div>
+                <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#facemonews<?php echo $row['id']; ?>" data-width="100%" data-numposts="5"></div>
                 <div id="fb-root"></div>
-                <script async defer crossorigin="anonymous"
-                    src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v19.0&appId=422616272474686"
-                    nonce="R9jV1pkC"></script>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v19.0&appId=422616272474686" nonce="R9jV1pkC"></script>
             </div>
         </div>
     </div>
 
-    
+
 
     <!-- footer -->
     <?php include_once 'includes/footer.php' ?>
@@ -218,8 +150,9 @@ if($result->num_rows > 0){
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="assets/js/main.js"></script>
+    
     <script src="node_modules/jarallax/dist/jarallax.min.js"></script>
 </body>
 
