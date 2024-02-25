@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-   
+    <meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
 
     <!-- meta -->
     <!-- Primary Meta Tags -->
     <title>Contact</title>
     <meta name="title" content="หน้าเงิน facemonews" />
-    
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -62,8 +62,7 @@
 
     <!-- header -->
 
-    <header data-jarallax data-speed="0.2" class=" jarallax"
-        style="background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <header data-jarallax data-speed="0.2" class=" jarallax" style="background-image: url('https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
 
         <div class="blog-image">
             <h1 class="display-4 fw-bold">ข้อมูลการติดต่อ</h1>
@@ -112,34 +111,32 @@
                 <div class="card">
                     <div class="card-body ">
                         <h5 class="card-title">แบบฟอร์มติดต่อเรา</h5>
-                        <div class="row g-3 ">
-                            <div class="col-md-4 form-group">
-                                <label for="name" class="form-label">ชื่อ</label>
-                                <input type="text" id="name" class="form-control" placeholder="ชื่อของคุณ"
-                                    aria-label="First name">
+                        <form action="php/contact.php" method="post">
+                            <div class="row g-3 ">
+                                <div class="col-md-4 form-group">
+                                    <label for="name" class="form-label">ชื่อ</label>
+                                    <input type="text" id="name" name="name" required class="form-control" placeholder="ชื่อของคุณ" aria-label="First name">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+                                    <input type="text" id="phone" name="phone" required class="form-control" placeholder="เบอร์โทรศัพท์" aria-label="First name">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="email" class="form-label">อีเมล</label>
+                                    <input type="text" id="email" name="email" required class="form-control" placeholder="example@gmail.com" aria-label="First name">
+                                </div>
                             </div>
-                            <div class="col-md-4 form-group">
-                                <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
-                                <input type="text" id="phone" class="form-control" placeholder="เบอร์โทรศัพท์"
-                                    aria-label="First name">
+                            <div class="form-group mt-2">
+                                <label for="message" class="form-label">ข้อความของคุณ</label>
+                                <textarea id="message" rows="10" name="message" required class="form-control" placeholder="เขียนข้อความของคุณที่นี่"></textarea>
                             </div>
-                            <div class="col-md-4 form-group">
-                                <label for="email" class="form-label">อีเมล</label>
-                                <input type="text" id="email" class="form-control" placeholder="example@gmail.com"
-                                    aria-label="First name">
+
+                            <div id="recaptcha-wrapper" class="text-center my-2 ">
+                                <div class="g-recaptcha d-inline-block" data-callback="recaptchaCallback" data-sitekey="6LcVb3YpAAAAAKrUXPJlqfWkj_bjeIzDZYaPSvGl"></div>
                             </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label for="message" class="form-label">ข้อความของคุณ</label>
-                            <textarea id="message" rows="10" class="form-control"
-                                placeholder="เขียนข้อความของคุณที่นี่"></textarea>
-                        </div>
-                        
-                        <div id="recaptcha-wrapper" class="text-center my-2 ">
-                            <div class="g-recaptcha d-inline-block" data-callback="recaptchaCallback"
-                                data-sitekey="6LcVb3YpAAAAAKrUXPJlqfWkj_bjeIzDZYaPSvGl"></div>
-                        </div>
-                        <button class="btn btn-primary d-block mx-auto mt-3" type="submit">ส่งข้อความ</button>
+                            <button class="btn btn-primary d-block mx-auto mt-3" name="btn-submit" id="btn-submit" type="submit" disabled>ส่งข้อความ</button>
+                        </form>
+
 
 
                     </div>
@@ -149,7 +146,7 @@
         </div>
     </section>
 
-    
+
 
     <!-- footer -->
     <?php include_once 'includes/footer.php' ?>
@@ -167,7 +164,7 @@
     <script src="assets/js/main.js"></script>
     <script src="node_modules/jarallax/dist/jarallax.min.js"></script>
     <script>
-        $(function () {
+        $(function() {
             // global variables
             captchaResized = false;
             captchaWidth = 304;
@@ -175,7 +172,7 @@
             captchaWrapper = $('#recaptcha-wrapper');
             captchaElements = $('#rc-imageselect, .g-recaptcha');
 
-            $(window).on('resize', function () {
+            $(window).on('resize', function() {
                 resizeCaptcha();
             });
 
@@ -195,6 +192,10 @@
                 captchaWrapper.height(captchaHeight * scale);
                 if (captchaResized == false) captchaResized = true;
             }
+        }
+
+        function recaptchaCallback(){
+            $('#btn-submit').removeAttr('disabled');
         }
     </script>
 </body>
